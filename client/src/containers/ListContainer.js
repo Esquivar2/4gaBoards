@@ -57,6 +57,7 @@ const mapDispatchToProps = (dispatch, { id }) =>
       onCardCreate: (data, autoOpen) => entryActions.createCard(id, data, autoOpen),
       onMailCreate: () => entryActions.createMail(id),
       onMailUpdate: () => entryActions.updateMail(id),
+      onMailDelete: () => entryActions.deleteMail(id),
     },
     dispatch,
   );

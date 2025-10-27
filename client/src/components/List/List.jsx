@@ -40,6 +40,7 @@ const List = React.memo(
     onCardCreate,
     onMailCreate,
     onMailUpdate,
+    onMailDelete,
   }) => {
     const [t] = useTranslation();
     const [isAddCardOpen, setIsAddCardOpen] = useState(false);
@@ -107,6 +108,12 @@ const List = React.memo(
     const handleNameEditHeightChange = useCallback((height) => {
       setNameEditHeight(height);
     }, []);
+
+    const handleMailCopy = useCallback(() => {
+      if (mailId) {
+        navigator.clipboard.writeText(mailId);
+      }
+    }, [mailId]);
 
     useEffect(() => {
       if (isAddCardOpen && listWrapper.current) {
@@ -230,6 +237,8 @@ const List = React.memo(
                       onCardAdd={handleCardAdd}
                       onMailCreate={onMailCreate}
                       onMailUpdate={onMailUpdate}
+                      onMailCopy={handleMailCopy}
+                      onMailDelete={onMailDelete}
                       onDelete={onDelete}
                       position="left-start"
                       offset={0}
@@ -279,6 +288,7 @@ List.propTypes = {
   onCardCreate: PropTypes.func.isRequired,
   onMailCreate: PropTypes.func.isRequired,
   onMailUpdate: PropTypes.func.isRequired,
+  onMailDelete: PropTypes.func.isRequired,
 };
 
 List.defaultProps = {
